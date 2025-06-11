@@ -1,0 +1,8 @@
+{
+  "name": "wishlist",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/rieznikk/wishlist.git",
+  "author": "rieznikk <oleksandr.rieznikk@gmail.com>",
+  "license": "MIT"
+}
