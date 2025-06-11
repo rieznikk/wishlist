@@ -4,5 +4,11 @@
   "main": "index.js",
   "repository": "https://github.com/rieznikk/wishlist.git",
   "author": "rieznikk <oleksandr.rieznikk@gmail.com>",
-  "license": "MIT"
+  "workspaces": ["client"],
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "yarn workspace client dev",
+    "build": "yarn workspace client build"
+  }
 }
