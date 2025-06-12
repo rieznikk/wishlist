@@ -1,0 +1,19 @@
+@import '../abstracts/variables.scss';
+@import '../abstracts/mixins.scss';
+
+.auth-form {
+  @include flex-column($form-gap);
+
+  .auth-form__input-wrapper {
+    @include flex-column();
+
+    .auth-form__input {
+      @include input-style;
+      min-width: 350px;
+    }
+
+    .auth-form__error {
+      @include error-style;
+    }
+  }
+}
