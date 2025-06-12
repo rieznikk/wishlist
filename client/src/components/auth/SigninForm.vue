@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, watch } from 'vue';
+  import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
   import * as yup from 'yup';
   import { useRouter } from 'vue-router';
   import { login } from '../../composables/useAuth';
@@ -104,5 +104,18 @@
 
   watch(password, () => {
     errors.value.password = undefined;
+  });
+
+  const listenToKeyPress = (event: KeyboardEvent) => {
+    const keyCode = event.code;
+    if (keyCode === 'Enter') handleSignin();
+  }
+
+  onMounted(() => {
+    window.addEventListener('keypress', listenToKeyPress);
+  });
+
+  onBeforeUnmount(() => {
+    window.removeEventListener('keypress', listenToKeyPress);
   });
 </script>
