@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/HelloWorld.vue';
-import Test from '../views/HelloTest.vue';
+import AuthView from '../views/AuthView.vue';
+import SigninForm from '../components/auth/SigninForm.vue';
+import SignupForm from '../components/auth/SignupForm.vue';
+import ResetPasswordForm from '../components/auth/ResetPasswordForm.vue';
 
 const routes = [
   {
@@ -10,9 +13,13 @@ const routes = [
     props: { msg: 'Vite + Vue' }
   },
   {
-    path: '/test',
-    name: 'Test',
-    component: Test
+    path: '/auth',
+    component: AuthView,
+    children: [
+      { path: 'signin', name: 'Signin', component: SigninForm },
+      { path: 'signup', name: 'Signup', component: SignupForm },
+      { path: 'reset', name: 'Reset', component: ResetPasswordForm },
+    ]
   }
 ];
 
