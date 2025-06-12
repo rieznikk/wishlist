@@ -23,14 +23,5 @@ const routes = [
   }
 ];
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes
-});
-
-router.beforeEach((to, from, next) => {
-  console.log(`Navigating from ${from.fullPath} to ${to.fullPath}`);
-  next();
-});
-
+const router = createRouter({ history: createWebHistory(), routes });
 export { router };
