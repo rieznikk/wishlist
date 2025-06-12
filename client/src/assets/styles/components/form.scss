@@ -1,5 +1,4 @@
-@import '../abstracts/variables.scss';
-@import '../abstracts/mixins.scss';
+@use '../abstracts' as *;
 
 .auth-form {
   @include flex-column($form-gap);
@@ -15,5 +14,9 @@
     .auth-form__error {
       @include error-style;
     }
+  }
+
+  .auth-form-link {
+    margin: 0;
   }
 }
