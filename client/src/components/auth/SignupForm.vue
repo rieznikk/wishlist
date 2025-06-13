@@ -13,7 +13,7 @@
       <span v-if="errors.password" class="auth-form__error">{{ errors.password }}</span>
     </div>
 
-    <button type="submit">Create account</button>
+    <Button :loading="submitLoading" type="submit">Create account</Button>
   </form>
 
   <Toast v-if="toastMessage" :type="toastType" :message="toastMessage" :duration="5000" @close="onToastClose" />
@@ -25,6 +25,7 @@
   import { useRouter } from 'vue-router';
   import { signup } from '../../composables/useAuth';
   import Toast from '../ui/Toast.vue';
+  import Button from '../ui/Button.vue';
 
   const router = useRouter();
   const email = ref('');
@@ -33,6 +34,7 @@
   const toastQueue = ref<{ message: string; type: string }[]>([]);
   const toastMessage = ref<string | null>(null);
   const toastType = ref('error');
+  const submitLoading = ref(false);
 
   const schema = yup.object({
     email: yup.string().email('Invalid email').required('Email is required'),
@@ -72,6 +74,8 @@
   };
 
   const handleSignup = async () => {
+    submitLoading.value = true;
+
     try {
       await validateForm();
     } catch (error: unknown) {
@@ -92,6 +96,8 @@
     } catch (error: unknown) {
       console.error('❌[signup] - Failed to signup user:', error);
       addToast('Unexpected error occured, please try again later.', 'error');
+    } finally {
+      submitLoading.value = false;
     }
   };
 
