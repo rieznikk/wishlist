@@ -1,4 +1,19 @@
 import { supabase } from '../lib/supabase';
+import { useAuthStore } from '../stores/auth';
+
+export function useAuth() {
+  const auth = useAuthStore();
+
+  const init = async () => {
+    await auth.fetchUser();
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      auth.user = session?.user ?? null;
+    });
+  };
+
+  return { ...auth, init };
+}
 
 export async function signup(email: string, password: string) {
   const { data, error } = await supabase.auth.signUp({ email, password });
