@@ -24,7 +24,7 @@ const routes = [
     path: '/',
     name: 'Home',
     children: [
-      { path: '', name: 'Wishlists', component: Home }
+      { path: '/wishlists', name: 'Wishlists', component: Home }
     ],
     meta: { requiresAuth: true }
   }
@@ -42,7 +42,7 @@ router.beforeEach(async (to, _from, next) => {
   }
 
   if (to.meta.requiresGuest && isLoggedIn) {
-    return next({ name: 'Home' });
+    return next({ name: 'Wishlists' });
   }
   
   next();
