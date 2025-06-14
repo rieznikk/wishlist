@@ -1,0 +1,24 @@
+@use './variables' as *;
+
+@mixin flex-column($gap: 0) {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  row-gap: $gap;
+}
+
+@mixin input-style {
+  padding: $input-padding;
+  border-radius: $input-radius;
+  border-style: ridge;
+  border-color: $color-input-border;
+}
+
+@mixin error-style {
+  display: flex;
+  font-size: $error-font-size;
+  padding-left: $error-padding-left;
+  color: $color-error;
+}

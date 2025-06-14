@@ -1,28 +1,50 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { useAuthStore } from '../stores/auth';
+
 import Home from '../views/HelloWorld.vue';
-import Test from '../views/HelloTest.vue';
+import AuthView from '../views/AuthView.vue';
+import SigninForm from '../components/auth/SigninForm.vue';
+import SignupForm from '../components/auth/SignupForm.vue';
+import ResetPasswordForm from '../components/auth/ResetPasswordForm.vue';
+import UpdatePasswordForm from '../components/auth/UpdatePasswordForm.vue';
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home,
-    props: { msg: 'Vite + Vue' }
+    path: '/auth',
+    component: AuthView,
+    children: [
+      { path: '', redirect: { name: 'Signin' }},
+      { path: 'signin', name: 'Signin', component: SigninForm, meta: { requiresGuest: true }},
+      { path: 'signup', name: 'Signup', component: SignupForm, meta: { requiresGuest: true }},
+      { path: 'reset', name: 'Reset', component: ResetPasswordForm, meta: { requiresGuest: true }},
+      { path: 'update-password', name: 'UpdatePassword', component: UpdatePasswordForm, meta: { requiresAuth: true }}
+    ]
   },
   {
-    path: '/test',
-    name: 'Test',
-    component: Test
+    path: '/',
+    name: 'Home',
+    children: [
+      { path: '/wishlists', name: 'Wishlists', component: Home }
+    ],
+    meta: { requiresAuth: true }
   }
 ];
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes
-});
+const router = createRouter({ history: createWebHistory(), routes });
 
-router.beforeEach((to, from, next) => {
-  console.log(`Navigating from ${from.fullPath} to ${to.fullPath}`);
+router.beforeEach(async (to, _from, next) => {
+  const auth = useAuthStore();
+  if (!auth.isAuthResolved) await auth.fetchUser();
+  const isLoggedIn = auth.isLoggedIn;
+
+  if (to.meta.requiresAuth && !isLoggedIn) {
+    return next({ name: 'Signin' });
+  }
+
+  if (to.meta.requiresGuest && isLoggedIn) {
+    return next({ name: 'Wishlists' });
+  }
+  
   next();
 });
 
