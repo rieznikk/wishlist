@@ -16,10 +16,11 @@
 
 <script setup lang="ts">
   import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
+  import { mapSupabaseError } from '../../utils/supabaseErrors';
   import { updateUser } from '../../composables/useAuth';
-  import * as yup from 'yup';
-  import Toast from '../ui/Toast.vue';
   import Button from '../ui/Button.vue';
+  import Toast from '../ui/Toast.vue';
+  import * as yup from 'yup';
 
   const password = ref('');
   const errors = ref<{ password?: string }>({});
@@ -64,8 +65,9 @@
       await updateUser(password.value);
       addToast('Password is updated', 'info');
     } catch (error: unknown) {
-      console.error('❌[handle-reset] - Failed to reset user:', error);
-      addToast('Unexpected error occured, please try again later.', 'error');
+      const { message, fieldErrors } = mapSupabaseError(error);
+      if (fieldErrors) errors.value = { ...errors.value, ...fieldErrors };
+      addToast(message, 'error');
     } finally {
       submitLoading.value = false;
     }

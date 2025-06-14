@@ -15,11 +15,12 @@
 
 <script setup lang="ts">
   import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
-  import * as yup from 'yup';
-  import { resetPassword } from '../../composables/useAuth';
+  import { mapSupabaseError } from '../../utils/supabaseErrors';
   import { useCountdown } from '../../composables/useCountdown';
-  import Toast from '../ui/Toast.vue';
+  import { resetPassword } from '../../composables/useAuth';
   import Button from '../ui/Button.vue';
+  import Toast from '../ui/Toast.vue';
+  import * as yup from 'yup';
 
   const email = ref('');
   const errors = ref<{ email?: string }>({});
@@ -66,8 +67,9 @@
       setTimeout(() => start(), 1000);
       addToast('Please check your email for confirmation list', 'info');
     } catch (error: unknown) {
-      console.error('❌[handle-reset] - Failed to reset user:', error);
-      addToast('Unexpected error occured, please try again later.', 'error');
+      const { message, fieldErrors } = mapSupabaseError(error);
+      if (fieldErrors) errors.value = { ...errors.value, ...fieldErrors };
+      addToast(message, 'error');
     } finally {
       submitLoading.value = false;
     }

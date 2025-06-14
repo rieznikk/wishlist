@@ -21,11 +21,13 @@
 
 <script setup lang="ts">
   import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
-  import * as yup from 'yup';
-  import { useRouter } from 'vue-router';
+  import { mapSupabaseError } from '../../utils/supabaseErrors';
   import { signup } from '../../composables/useAuth';
-  import Toast from '../ui/Toast.vue';
+  import { useAuthStore } from '../../stores/auth';
+  import { useRouter } from 'vue-router';
   import Button from '../ui/Button.vue';
+  import Toast from '../ui/Toast.vue';
+  import * as yup from 'yup';
 
   const router = useRouter();
   const email = ref('');
@@ -35,6 +37,8 @@
   const toastMessage = ref<string | null>(null);
   const toastType = ref('error');
   const submitLoading = ref(false);
+
+  const auth = useAuthStore();
 
   const schema = yup.object({
     email: yup.string().email('Invalid email').required('Email is required'),
@@ -85,17 +89,18 @@
 
     try {
       const result = await signup(email.value, password.value);
-      console.log('🚔🚨result --->', result);
 
       if (result.user?.confirmation_sent_at) {
         addToast('A confirmation email has been sent. Please check your inbox.', 'success');
         return;
       }
 
-      if (result.session) router.push({ name: 'Home' });
+      await auth.fetchUser();
+      router.push({ name: 'Wishlists' });
     } catch (error: unknown) {
-      console.error('❌[signup] - Failed to signup user:', error);
-      addToast('Unexpected error occured, please try again later.', 'error');
+      const { message, fieldErrors } = mapSupabaseError(error);
+      if (fieldErrors) errors.value = { ...errors.value, ...fieldErrors };
+      addToast(message, 'error');
     } finally {
       submitLoading.value = false;
     }
