@@ -24,6 +24,7 @@ const routes = [
     path: '/',
     name: 'Home',
     children: [
+      { path: '', redirect: { name: 'Wishlists' }},
       { path: '/wishlists', name: 'Wishlists', component: Home }
     ],
     meta: { requiresAuth: true }
