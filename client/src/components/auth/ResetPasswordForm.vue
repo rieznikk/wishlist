@@ -1,16 +1,16 @@
 <template>
-  <h2 class="h1">Password reset</h2>
+  <h2 class="h1">{{ $t('views.reset_password.title') }}</h2>
 
   <form @submit.prevent="handleReset" class="auth-form">
     <div class="auth-form__input-wrapper">
-      <input v-model="email" type="text" placeholder="Email" autocomplete="email" class="auth-form__input" />
-      <span v-if="errors.email" class="auth-form__error">{{ errors.email }}</span>
+      <input v-model="email" type="text" :placeholder="$t('views.reset_password.form.email')" autocomplete="email" class="auth-form__input" />
+      <span v-if="errors.email" class="auth-form__error">{{ $t(errors.email) }}</span>
     </div>
 
-    <Button :loading="submitLoading" :countdown="countdown" type="submit">Send email</Button>
+    <Button :loading="submitLoading" :countdown="countdown" type="submit">{{ $t('views.reset_password.form.cta') }}</Button>
   </form>
 
-  <Toast v-if="toastMessage" :type="toastType" :message="toastMessage" :duration="5000" @close="onToastClose" />
+  <Toast v-if="toastMessage" :type="toastType" :message="$t(toastMessage)" :duration="5000" @close="onToastClose" />
 </template>
 
 <script setup lang="ts">
@@ -31,7 +31,7 @@
   const { countdown, start } = useCountdown(60);
 
   const schema = yup.object({
-    email: yup.string().email('Invalid email').required('Email is required')
+    email: yup.string().email('errors.invalid_email').required('errors.email_missing')
   });
 
   const validateForm = async () => {
@@ -65,7 +65,7 @@
     try {
       await resetPassword(email.value);
       setTimeout(() => start(), 1000);
-      addToast('Please check your email for confirmation list', 'info');
+      addToast('components.email_sent_pw_reset', 'info');
     } catch (error: unknown) {
       const { message, fieldErrors } = mapSupabaseError(error);
       if (fieldErrors) errors.value = { ...errors.value, ...fieldErrors };
