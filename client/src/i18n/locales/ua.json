@@ -1,0 +1,71 @@
+{
+  "common": {
+    "email": "Електронна пошта",
+    "password": "Пароль",
+    "login": "Увійти",
+    "signup": "Зареєструватися",
+    "create_account": "Створити обліковий запис",
+    "already_have_account": "Вже маєте обліковий запис?",
+    "dont_have_account": "Не маєте облікового запису?",
+    "forgot_password": "Забули пароль?",
+    "send_email": "Надіслати листа",
+    "reset_password": "Скинути пароль"
+  },
+  "errors": {
+    "invalid_credentials": "Невірна електронна пошта або пароль.",
+    "user_exists": "Користувач з такою електронною поштою вже існує.",
+    "email_taken": "Ця електронна пошта вже зареєстрована.",
+    "unknown": "Сталася невідома помилка.",
+    "invalid_email": "Неправильна електронна пошта",
+    "email_missing": "Введіть електронну пошту",
+    "weak_password": "Пароль повинен містити щонайменше 6 символів",
+    "password_missing": "Введіть пароль"
+  },
+  "views": {
+    "auth": {
+      "signin": {
+        "title": "Увійти",
+        "description": "@:common.dont_have_account",
+        "signup": "@:common.signup",
+        "passwordReset": "@:common.forgot_password",
+        "form": {
+          "email": "@:common.email",
+          "password": "@:common.password",
+          "cta": "@:common.login"
+        }
+      },
+      "signup": {
+        "title": "Створіть обліковий запис",
+        "description": "@:common.already_have_account",
+        "signin": "@:common.login",
+        "form": {
+          "email": "@:common.email",
+          "password": "@:common.password",
+          "cta": "@:common.create_account"
+        }
+      },
+      "reset_password": {
+        "title": "Скидання пароля",
+        "form": {
+          "email": "@:common.email",
+          "cta": "@:common.send_email"
+        }
+      },
+      "update_password": {
+        "title": "Введіть новий пароль",
+        "form": {
+          "email": "@:common.email",
+          "password": "@:common.password",
+          "cta": "@:common.reset_password"
+        }
+      }
+    }
+  },
+  "components": {
+    "toast": {
+      "email_sent_signup": "Лист із підтвердженням надіслано. Перевірте свою пошту",
+      "email_sent_pw_reset": "Будь ласка, перевірте свою пошту для підтвердження",
+      "pw_updated": "Пароль оновлено"
+    }
+  }
+}

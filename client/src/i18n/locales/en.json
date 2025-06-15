@@ -1,0 +1,71 @@
+{
+  "common": {
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "signup": "Sign up",
+    "create_account": "Create account",
+    "already_have_account": "Already have an account?",
+    "dont_have_account": "Don't have an account?",
+    "forgot_password": "Forgot the password?",
+    "send_email": "Send email",
+    "reset_password": "Reset password"
+  },
+  "errors": {
+    "invalid_credentials": "Invalid email or password.",
+    "user_exists": "User with this email already exists.",
+    "email_taken": "Email is already registered.",
+    "unknown": "An unknown error occurred.",
+    "invalid_email": "Invalid email",
+    "email_missing": "Email is required",
+    "weak_password": "Password must be at least 6 characters",
+    "password_missing": "Password is required"
+  },
+  "views": {
+    "auth": {
+      "signin": {
+        "title": "Sign in",
+        "description": "@:common.dont_have_account",
+        "signup": "@:common.signup",
+        "passwordReset": "@:common.forgot_password",
+        "form": {
+          "email": "@:common.email",
+          "password": "@:common.password",
+          "cta": "@:common.login"
+        }
+      },
+      "signup": {
+        "title": "Create your account",
+        "description": "@:common.already_have_account",
+        "signin": "@:common.login",
+        "form": {
+          "email": "@:common.email",
+          "password": "@:common.password",
+          "cta": "@:common.create_account"
+        }
+      },
+      "reset_password": {
+        "title": "Password reset",
+        "form": {
+          "email": "@:common.email",
+          "cta": "@:common.send_email"
+        }
+      },
+      "update_password": {
+        "title": "Enter new password",
+        "form": {
+          "email": "@:common.email",
+          "password": "@:common.password",
+          "cta": "@:common.reset_password"
+        }
+      }
+    }
+  },
+  "components": {
+    "toast": {
+      "email_sent_signup": "A confirmation email has been sent. Please check your inbox",
+      "email_sent_pw_reset": "Please check your email for confirmation list",
+      "pw_updated": "Password is updated"
+    }
+  }
+}
