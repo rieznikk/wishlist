@@ -1,3 +1,17 @@
+$theme-light-background-color: #FFFFFF;
+$theme-light-text-primary-color: #1F2937;
+$theme-light-text-secondary-color: #4B5563;
+$theme-light-accent-color: #3B82F6;
+$theme-light-button-background-color: #2563EB;
+$theme-light-break-color: #E5E7EB;
+
+$theme-dark-background-color: #121212;
+$theme-dark-text-primary-color: #E5E7EB	;
+$theme-dark-text-secondary-color: #9CA3AF	;
+$theme-dark-accent-color: #3B82F6;
+$theme-dark-button-background-color: #2563EB;
+$theme-dark-break-color: #374151;
+
 $color-error: #ef4444;
 $color-input-border: #ccc;
 
@@ -7,3 +21,19 @@ $error-font-size: 14px;
 $error-padding-left: 5px;
 
 $form-gap: 15px;
+
+$button-border-radius: 8px;
+$button-border: 2px solid transparent;
+$button-padding: 0.6em 1.2em;
+$button-forn-size: 1em;
+$button-font-weight: 500;
+$button-font-family: inherit;
+$button-cursor: pointer;
+$button-transition: border-color 0.25s;
+
+$light-button-spinner-border: 2px solid #E5E7EB;
+$light-button-spinner-border-top: #1F2937;
+
+$dark-button-spinner-border: 2px solid #374151;
+$dark-button-spinner-border-top: #E5E7EB;
+

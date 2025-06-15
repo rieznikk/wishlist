@@ -1,0 +1,17 @@
+@use '../abstracts/' as *;
+
+.theme-toggle {
+  background-color: transparent !important;
+
+  path {
+    stroke: $theme-dark-background-color;
+  }
+
+  &:hover {
+    border-color: transparent !important;
+  }
+}
+
+.dark .theme-toggle path {
+  stroke: $theme-light-background-color;
+}

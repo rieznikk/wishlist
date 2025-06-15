@@ -22,3 +22,18 @@
   padding-left: $error-padding-left;
   color: $color-error;
 }
+
+@mixin button-disabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+@mixin button-spinner {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
