@@ -10,10 +10,12 @@ button {
   transition: $button-transition;
   cursor: $button-cursor;
   background-color: $theme-light-button-background-color;
+  color: $theme-light-text-primary-color;
 }
 
 .dark button {
   background-color: $theme-dark-button-background-color;
+  color: $theme-dark-text-primary-color;
 }
 
 button:not(:disabled):hover {

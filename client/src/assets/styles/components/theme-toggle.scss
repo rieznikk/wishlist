@@ -1,6 +1,7 @@
 @use '../abstracts/' as *;
 
 .theme-toggle {
+  padding: 0.6em !important;
   background-color: transparent !important;
 
   path {
