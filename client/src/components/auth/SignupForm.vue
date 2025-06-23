@@ -94,7 +94,7 @@
       const result = await signup(email.value, password.value);
 
       if (result.user?.confirmation_sent_at) {
-        addToast('components.email_sent_signup', 'success');
+        addToast('components.toast.email_sent_signup', 'success');
         return;
       }
 
