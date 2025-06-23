@@ -9,7 +9,9 @@
     "dont_have_account": "Don't have an account?",
     "forgot_password": "Forgot the password?",
     "send_email": "Send email",
-    "reset_password": "Reset password"
+    "reset_password": "Reset password",
+    "logout": "Logout",
+    "settings": "Settings"
   },
   "errors": {
     "invalid_credentials": "Invalid email or password.",
@@ -66,6 +68,10 @@
       "email_sent_signup": "A confirmation email has been sent. Please check your inbox",
       "email_sent_pw_reset": "Please check your email for confirmation list",
       "pw_updated": "Password is updated"
+    },
+    "account_icon": {
+      "settings": "@:common.settings",
+      "logout": "@:common.logout"
     }
   },
   " ": ""

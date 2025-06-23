@@ -9,7 +9,9 @@
     "dont_have_account": "Не маєте облікового запису?",
     "forgot_password": "Забули пароль?",
     "send_email": "Надіслати листа",
-    "reset_password": "Скинути пароль"
+    "reset_password": "Скинути пароль",
+    "logout": "Вийти",
+    "settings": "Налаштування"
   },
   "errors": {
     "invalid_credentials": "Невірна електронна пошта або пароль.",
@@ -66,6 +68,10 @@
       "email_sent_signup": "Лист із підтвердженням надіслано. Перевірте свою пошту",
       "email_sent_pw_reset": "Будь ласка, перевірте свою пошту для підтвердження",
       "pw_updated": "Пароль оновлено"
+    },
+    "account_icon": {
+      "settings": "@:common.settings",
+      "logout": "@:common.logout"
     }
   },
    " ": ""
