@@ -1,17 +1,17 @@
 <template>
-  <h2 class="h1">Enter new password</h2>
+  <h2 class="h1">{{ $t('views.auth.update_password.title') }}</h2>
 
   <form @submit.prevent="handleReset" class="auth-form">
     <div class="auth-form__input-wrapper">
-      <input type="text" placeholder="Email" autocomplete="email" hidden />
-      <input v-model="password" type="password" placeholder="Password" autocomplete="new-password" class="auth-form__input" />
-      <span v-if="errors.password" class="auth-form__error">{{ errors.password }}</span>
+      <input type="text" :placeholder="$t('views.auth.update_password.form.email')" autocomplete="email" hidden />
+      <input v-model="password" type="password" :placeholder="$t('views.auth.update_password.form.password')" autocomplete="new-password" class="auth-form__input" />
+      <span v-if="errors.password" class="auth-form__error">{{ $t(errors.password) }}</span>
     </div>
 
-    <Button :loading="submitLoading" type="submit">Reset password</Button>
+    <Button :loading="submitLoading" type="submit">{{ $t('views.auth.update_password.form.cta') }}</Button>
   </form>
 
-  <Toast v-if="toastMessage" :type="toastType" :message="toastMessage" :duration="5000" @close="onToastClose" />
+  <Toast v-if="toastMessage" :type="toastType" :message="$t(toastMessage)" :duration="5000" @close="onToastClose" />
 </template>
 
 <script setup lang="ts">
@@ -30,7 +30,7 @@
   const submitLoading = ref(false);
 
   const schema = yup.object({
-    password: yup.string().required('Password is required'),
+    password: yup.string().required('errors.password_missing'),
   });
 
   const validateForm = async () => {
@@ -63,7 +63,7 @@
 
     try {
       await updateUser(password.value);
-      addToast('Password is updated', 'info');
+      addToast('components.toast.pw_updated', 'info');
     } catch (error: unknown) {
       const { message, fieldErrors } = mapSupabaseError(error);
       if (fieldErrors) errors.value = { ...errors.value, ...fieldErrors };

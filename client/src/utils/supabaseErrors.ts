@@ -7,7 +7,6 @@ type SupabaseError = {
 
 export function mapSupabaseError(error: unknown): SupabaseError {
   const err = error as { message: string };
-
   const msg = err.message?.toLowerCase() || '';
   const is = (s: string) => msg.includes(s);
 
@@ -15,20 +14,20 @@ export function mapSupabaseError(error: unknown): SupabaseError {
 
   if (is('invalid login credentials')) {
     return {
-      message: 'Неверный email или пароль.',
+      message: 'errors.invalid_credentials',
       fieldErrors: {
         email: ' ',
-        password: 'Неверный email или пароль.',
+        password: 'errors.invalid_credentials',
       },
     };
   }
 
   if (is('user already registered')) {
     return {
-      message: 'Пользователь с таким email уже существует.',
-      fieldErrors: { email: 'Пользователь уже зарегистрирован.' },
+      message: 'errors.user_exists',
+      fieldErrors: { email: 'errors.email_taken' },
     };
   }
 
-  return { message: 'Произошла неизвестная ошибка.' };
+  return { message: 'errors.unknown' };
 }
