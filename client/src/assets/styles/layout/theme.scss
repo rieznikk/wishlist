@@ -1,0 +1,13 @@
+@use '../abstracts' as *;
+
+body {
+  background-color: $theme-light-background-color;
+  color: $theme-light-text-secondary-color;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+  background-color: $theme-dark-background-color;
+  color: $theme-dark-text-secondary-color;
+}
+

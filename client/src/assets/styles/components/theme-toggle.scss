@@ -1,0 +1,18 @@
+@use '../abstracts/' as *;
+
+.theme-toggle {
+  padding: 0.6em !important;
+  background-color: transparent !important;
+
+  path {
+    stroke: $theme-dark-background-color;
+  }
+
+  &:hover {
+    border-color: transparent !important;
+  }
+}
+
+.dark .theme-toggle path {
+  stroke: $theme-light-background-color;
+}

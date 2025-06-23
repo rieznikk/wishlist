@@ -1,0 +1,31 @@
+name: Supabase Auth Daily Ping
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # 09:00 Kyiv time
+  workflow_dispatch:
+
+jobs:
+  ping-auth:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping Supabase Auth via login
+        run: |
+          echo "🔐 Pinging Supabase Auth using test login..."
+
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "email": "${{ secrets.SUPABASE_TEST_EMAIL }}",
+              "password": "${{ secrets.SUPABASE_TEST_PASSWORD }}"
+            }' \
+            "https://${{ secrets.SUPABASE_PROJECT_REF }}.supabase.co/auth/v1/token?grant_type=password")
+
+          if [ "$RESPONSE" = "200" ]; then
+            echo "✅ Supabase Auth is working"
+          else
+            echo "❌ Login ping failed with status: $RESPONSE"
+            exit 1
+          fi
