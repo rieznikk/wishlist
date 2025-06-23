@@ -1,24 +1,24 @@
 <template>
-  <h2 class="h1">Sign in</h2>
-  <p>Don't have an account? <router-link to="/auth/signup">Sign up</router-link></p>
+  <h2 class="h1">{{ $t('views.auth.signin.title') }}</h2>
+  <p>{{ $t('views.auth.signin.description') }} <router-link to="/auth/signup">{{ $t('views.auth.signin.signup') }}</router-link></p>
 
   <form @submit.prevent="handleSignin" class="auth-form">
     <div class="auth-form__input-wrapper">
-      <input v-model="email" type="text" placeholder="Email" autocomplete="email" class="auth-form__input" />
-      <span v-if="errors.email" class="auth-form__error">{{ errors.email }}</span>
+      <input v-model="email" type="text" :placeholder="$t('views.auth.signin.form.email')" autocomplete="email" class="auth-form__input" />
+      <span v-if="errors.email" class="auth-form__error">{{ $t(errors.email) }}</span>
     </div>
 
     <div class="auth-form__input-wrapper">
-      <input v-model="password" type="password" placeholder="Password" autocomplete="new-password" class="auth-form__input" />
-      <span v-if="errors.password" class="auth-form__error">{{ errors.password }}</span>
+      <input v-model="password" type="password" :placeholder="$t('views.auth.signin.form.password')" autocomplete="new-password" class="auth-form__input" />
+      <span v-if="errors.password" class="auth-form__error">{{ $t(errors.password) }}</span>
     </div>
 
-    <p class="auth-form-link"><router-link to="reset">Forgot the password?</router-link></p>
+    <p class="auth-form-link"><router-link to="reset">{{ $t('views.auth.signin.passwordReset') }}</router-link></p>
 
-    <Button :loading="submitLoading" type="submit">Login</Button>
+    <Button :loading="submitLoading" type="submit">{{ $t('views.auth.signin.form.cta') }}</Button>
   </form>
 
-  <Toast v-if="toastMessage" :type="toastType" :message="toastMessage" :duration="5000" @close="onToastClose" />
+  <Toast v-if="toastMessage" :type="toastType" :message="$t(toastMessage)" :duration="5000" @close="onToastClose" />
 </template>
 
 <script setup lang="ts">
@@ -43,8 +43,8 @@
   const auth = useAuthStore();
 
   const schema = yup.object({
-    email: yup.string().email('Invalid email').required('Email is required'),
-    password: yup.string().required('Password is required'),
+    email: yup.string().email('errors.invalid_email').required('errors.email_missing'),
+    password: yup.string().min(6, 'errors.weak_password').required('errors.password_missing'),
   });
 
   const validateForm = async () => {
@@ -59,6 +59,8 @@
           errors.value[path] = validationError.message;
         });
       }
+
+      throw error;
     }
   };
 
@@ -69,6 +71,7 @@
       await validateForm();
     } catch (error: unknown) {
       console.error('❌[handle-signup] - Validation failed:', error);
+      submitLoading.value = false;
       return;
     }
 

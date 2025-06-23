@@ -1,0 +1,89 @@
+@use '../abstracts' as *;
+
+.account-icon {
+  position: relative;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.popover {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  border-radius: 10px;
+  z-index: 10;
+  width: 120px;
+}
+
+.popover ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.popover li button {
+  width: 100%;
+  padding: 8px 12px;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.account-icon {
+  .avatar {
+    background-color: $theme-light-break-color;
+    color: $theme-light-text-primary-color;
+  }
+
+  .popover {
+    background-color: $theme-light-popover-background-color;
+    color: $theme-light-text-primary-color;
+    border: 1px solid $theme-light-break-color;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .popover li button:hover {
+    background-color: $theme-light-break-color;
+  }
+}
+
+.dark .account-icon {
+  .avatar {
+    background-color: $theme-dark-break-color;
+    color: $theme-dark-text-primary-color;
+  }
+
+  .popover {
+    background-color: $theme-dark-popover-background-color;
+    color: $theme-dark-text-primary-color;
+    border: 1px solid $theme-dark-break-color;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  .popover li button:hover {
+    background-color: $theme-dark-break-color;
+  }
+}
