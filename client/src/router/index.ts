@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { useAuthStore } from '../stores/auth';
 
-import Home from '../views/HelloWorld.vue';
+import Home from '../views/HomeView.vue';
 import AuthView from '../views/AuthView.vue';
 import SigninForm from '../components/auth/SigninForm.vue';
 import SignupForm from '../components/auth/SignupForm.vue';
@@ -22,10 +22,9 @@ const routes = [
   },
   {
     path: '/',
-    name: 'Home',
+    redirect: { name: 'Wishlists' },
     children: [
-      { path: '', redirect: { name: 'Wishlists' }},
-      { path: '/wishlists', name: 'Wishlists', component: Home }
+      { path: 'wishlists', name: 'Wishlists', component: Home }
     ],
     meta: { requiresAuth: true }
   }
