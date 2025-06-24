@@ -11,7 +11,9 @@
     "send_email": "Send email",
     "reset_password": "Reset password",
     "logout": "Logout",
-    "settings": "Settings"
+    "settings": "Settings",
+    "seconds:": "Seconds",
+    "seconds_short": "s"
   },
   "errors": {
     "invalid_credentials": "Invalid email or password.",
@@ -72,6 +74,10 @@
     "account_icon": {
       "settings": "@:common.settings",
       "logout": "@:common.logout"
+    },
+    "button": {
+      "resend_in": "Resend in",
+      "seconds_short": "@:common.seconds_short"
     }
   },
   " ": ""

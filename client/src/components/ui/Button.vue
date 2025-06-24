@@ -1,6 +1,6 @@
 <template>
   <button :disabled="isDisabled">
-    <span v-if="countdown > 0">Resend in {{ countdown }}s</span>
+    <span v-if="countdown > 0">{{ $t('components.button.resend_in') }} {{ countdown }}{{ $t('components.button.seconds_short') }}</span>
     <span v-else-if="loading" class="button-spinner"></span>
     <slot v-else />
   </button>

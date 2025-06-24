@@ -11,7 +11,9 @@
     "send_email": "Надіслати листа",
     "reset_password": "Скинути пароль",
     "logout": "Вийти",
-    "settings": "Налаштування"
+    "settings": "Налаштування",
+    "seconds": "Секунди",
+    "seconds_short": "с"
   },
   "errors": {
     "invalid_credentials": "Невірна електронна пошта або пароль.",
@@ -72,6 +74,10 @@
     "account_icon": {
       "settings": "@:common.settings",
       "logout": "@:common.logout"
+    },
+    "button": {
+      "resend_in": "Надіслати повторно",
+      "seconds_short": "@:common.seconds_short"
     }
   },
    " ": ""
