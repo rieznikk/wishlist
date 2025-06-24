@@ -31,7 +31,7 @@
   const userInitial = computed(() => userEmail.value?.charAt(0)?.toUpperCase());
 
   const togglePopover = () => popoverVisible.value = !popoverVisible.value;
-  const goToSettings = () => console.log('Go to settings');
+  const goToSettings = () => router.push({ name: 'AccountSettings' });
 
   const handleLogout = async () => {
     await logout();
