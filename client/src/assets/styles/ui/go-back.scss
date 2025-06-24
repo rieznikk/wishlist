@@ -1,0 +1,20 @@
+@use '../abstracts/' as *;
+
+.go-back {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 10px;
+  cursor: pointer;
+  width: fit-content;
+  transition: color 0.4s ease;
+
+  &:hover {
+    color: $theme-light-accent-color;
+  }
+}
+
+.dark .go-back:hover {
+  color: $theme-dark-accent-color;
+}

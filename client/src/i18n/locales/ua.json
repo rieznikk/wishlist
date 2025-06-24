@@ -78,6 +78,9 @@
     "button": {
       "resend_in": "Надіслати повторно",
       "seconds_short": "@:common.seconds_short"
+    },
+    "go_back": {
+      "back_to_home": "Назад до головної сторінки"
     }
   },
    " ": ""

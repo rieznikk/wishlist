@@ -78,6 +78,9 @@
     "button": {
       "resend_in": "Resend in",
       "seconds_short": "@:common.seconds_short"
+    },
+    "go_back": {
+      "back_to_home": "Back to home"
     }
   },
   " ": ""
