@@ -7,6 +7,7 @@ import SigninForm from '../components/auth/SigninForm.vue';
 import SignupForm from '../components/auth/SignupForm.vue';
 import ResetPasswordForm from '../components/auth/ResetPasswordForm.vue';
 import UpdatePasswordForm from '../components/auth/UpdatePasswordForm.vue';
+import AccountSettings from '../components/account/AccountSettings.vue';
 
 const routes = [
   {
@@ -25,6 +26,14 @@ const routes = [
     redirect: { name: 'Wishlists' },
     children: [
       { path: 'wishlists', name: 'Wishlists', component: Home }
+    ],
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/account',
+    redirect: { name: 'AccountSettings' },
+    children: [
+      { path: 'settings', name: 'AccountSettings', component: AccountSettings }
     ],
     meta: { requiresAuth: true }
   }

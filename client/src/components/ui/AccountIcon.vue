@@ -28,10 +28,22 @@
   const accountIconRef = ref<HTMLElement | null>(null);
 
   const userEmail = computed(() => auth.user?.email);
-  const userInitial = computed(() => userEmail.value?.charAt(0)?.toUpperCase());
+  const userFirstName = computed(() => auth?.userFirstName);
+  const userLastName = computed(() => auth?.userLastName);
+
+  const userInitial = computed(() => {
+    const first = userFirstName.value?.charAt(0)?.toUpperCase() ?? '';
+    const last = userLastName.value?.charAt(0)?.toUpperCase() ?? '';
+
+    if (first || last) {
+      return `${first}${last}`;
+    }
+
+    return userEmail.value?.charAt(0)?.toUpperCase() ?? '';
+  });
 
   const togglePopover = () => popoverVisible.value = !popoverVisible.value;
-  const goToSettings = () => console.log('Go to settings');
+  const goToSettings = () => router.push({ name: 'AccountSettings' });
 
   const handleLogout = async () => {
     await logout();

@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="container">
     <AccountIcon v-if="isLoggedIn" />
     <LocaleSelector />
     <ThemeToggle />
