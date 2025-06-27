@@ -20,3 +20,66 @@
     margin: 0;
   }
 }
+
+.account-settings__tile {
+  margin: 50px auto 0;
+  width: fit-content;
+
+  .account-settings__form-fullname {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    row-gap: 10px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    background-color: $theme-light-popover-background-color;
+    color: $theme-light-text-primary-color;
+    border: 1px solid $theme-light-break-color;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+
+    .h3 {
+      padding-bottom: 10px;
+      border-bottom: 1px solid $theme-light-break-color;
+    }
+
+    .account-settings__form-fistname {
+      margin-top: 10px;
+    }
+
+    .account-settings__form-fistname, .account-settings__form-lastname {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      column-gap: 100px;
+
+      input {
+        @include input-style;
+        min-width: 350px;
+      }
+    }
+
+    .account-settings__form-save {
+      margin-left: auto;
+      width: fit-content;
+      padding: 5px 12px;
+    }
+
+    .account-settings__form-error {
+      @include error-style;
+      justify-content: flex-end;
+      text-align: right;
+    }
+  }
+}
+
+.dark .account-settings__form-fullname {
+  background-color: $theme-dark-popover-background-color;
+  color: $theme-dark-text-primary-color;
+  border: 1px solid $theme-dark-break-color;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+  .h3 {
+    border-bottom: 1px solid $theme-dark-break-color;
+  }
+}
