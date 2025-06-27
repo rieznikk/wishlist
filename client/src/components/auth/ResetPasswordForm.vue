@@ -1,13 +1,14 @@
 <template>
-  <h2 class="h1">{{ $t('views.reset_password.title') }}</h2>
+  <h2 class="h1">{{ $t('views.auth.reset_password.title') }}</h2>
+  <p>{{ $t('views.auth.signin.description') }} <router-link to="/auth/signup">{{ $t('views.auth.signin.signup') }}</router-link></p>
 
   <form @submit.prevent="handleReset" class="auth-form">
     <div class="auth-form__input-wrapper">
-      <input v-model="email" type="text" :placeholder="$t('views.reset_password.form.email')" autocomplete="email" class="auth-form__input" />
+      <input v-model="email" type="text" :placeholder="$t('views.auth.reset_password.form.email')" autocomplete="email" class="auth-form__input" />
       <span v-if="errors.email" class="auth-form__error">{{ $t(errors.email) }}</span>
     </div>
 
-    <Button :loading="submitLoading" :countdown="countdown" type="submit">{{ $t('views.reset_password.form.cta') }}</Button>
+    <Button :loading="submitLoading" :countdown="countdown" type="submit">{{ $t('views.auth.reset_password.form.cta') }}</Button>
   </form>
 
   <Toast v-if="toastMessage" :type="toastType" :message="$t(toastMessage)" :duration="5000" @close="onToastClose" />
@@ -65,7 +66,7 @@
     try {
       await resetPassword(email.value);
       setTimeout(() => start(), 1000);
-      addToast('components.email_sent_pw_reset', 'info');
+      addToast('components.toast.email_sent_pw_reset', 'info');
     } catch (error: unknown) {
       const { message, fieldErrors } = mapSupabaseError(error);
       if (fieldErrors) errors.value = { ...errors.value, ...fieldErrors };
