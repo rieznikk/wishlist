@@ -1,5 +1,5 @@
 import { supabase } from '../lib/supabase';
-import type { Wishlist } from '../types/wishlists';
+import type { Wishlist, WishlistCreateInput } from '../types/wishlists';
 
 export async function getWishlists(): Promise<Wishlist[]> {
   try {
@@ -17,7 +17,7 @@ export async function getWishlists(): Promise<Wishlist[]> {
   }
 }
 
-export async function createWishlist(wishlistSettings: Wishlist): Promise<Wishlist | null> {
+export async function createWishlist(wishlistSettings: WishlistCreateInput): Promise<Wishlist | null> {
   try {
     const { data, error } = await supabase.from('wishlists').insert({
       name: wishlistSettings.name,
