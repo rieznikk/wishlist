@@ -1,0 +1,36 @@
+.wishlists {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.wishlist-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 auto;
+  max-width: 250px;
+  border: 1px solid beige;
+  border-radius: 8px;
+  gap: 10px;
+  cursor: pointer;
+  padding-bottom: 12px;
+
+  .wishlist-card__gradient {
+    height: 100px;
+    width: 100%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    transition: background 0.4s ease;
+  }
+
+  .wishlist-card__title {
+    margin: 0;
+  }
+
+  .wishlist-card__description {
+    margin: 0;
+  }
+}
