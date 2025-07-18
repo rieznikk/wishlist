@@ -15,6 +15,7 @@
     "vue": "^3.5.13",
     "vue-i18n": "11",
     "vue-router": "^4.5.1",
+    "vue3-skeleton-loader": "^0.2.0",
     "yup": "^1.6.1"
   },
   "devDependencies": {
