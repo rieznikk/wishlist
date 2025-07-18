@@ -1,9 +1,7 @@
 <template>
   <div v-if="wishlists.length" class="wishlists">
     <div v-for="wishlist in wishlists" class="wishlist-card">
-      <div class="wishlist-card__gradient"></div>
-      <h4 class="wishlist-card__title">{{ wishlist.name }}</h4>
-      <p v-if="wishlist.description" class="wishlist-card__description">{{ wishlist.description }}</p>
+      <WishListCard :wishlist="wishlist" />
     </div>
   </div>
 
@@ -25,6 +23,7 @@
   import { useWishlistsList } from '../stores/wishlists';
   import { useAuthStore } from '../stores/auth';
   import { createWishlist } from '../composables/useWishlist';
+  import WishListCard from '../components/wishlist/WishlistCard.vue';
   import Button from '../components/ui/Button.vue';
 
   const wishlistsStore = useWishlistsList();
