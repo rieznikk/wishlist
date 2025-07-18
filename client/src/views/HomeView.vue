@@ -6,14 +6,8 @@
   </div>
 
   <div v-else class="wishlists-empty">
-    <h2 class="wishlist-empty__heading">You don't have any of the wishlists. Let's create a new!</h2>
-    <Button 
-      :loading="createWishListLoading" 
-      @click="createWishList" 
-      class="wishlist-empty__button"
-    >
-      Create a wishlist
-    </Button>
+    <h2 class="wishlist-empty__heading">{{ $t('views.home.empty_state.title') }}</h2>
+    <Button :loading="createWishListLoading" @click="createWishList" class="wishlist-empty__button">{{ $t('views.home.empty_state.cta') }}</Button>
   </div>
 </template>
 

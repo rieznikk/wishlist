@@ -78,6 +78,12 @@
           "cta": "@:common.reset_password"
         }
       }
+    },
+    "home": {
+      "empty_state": {
+        "title": "You don't have any wishlists yet. Let's create one!",
+        "cta": "Create new Wishlist"
+      }
     }
   },
   "components": {
